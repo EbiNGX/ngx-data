@@ -1,0 +1,17 @@
+ticker,event_date,direction,note,source,fwd_20d_return_pct,fwd_60d_return_pct,status,logged_on
+ARADEL,2026-06-30,sell,"Omisore/Ogunbanjo, senior execs, 8.5M units",disclosures pipeline,7.7,,resolved,2026-09-20
+UACN,2026-06-16,sell,"Dalio Property (NED-related), 45.2M shares",disclosures pipeline,8.1,-9.1,resolved,2026-09-20
+TRANSCORP,2026-07-28,buy,"CEO Omogiafo + 4 execs, broad buying",disclosures pipeline,-11.9,,resolved,2026-09-20
+LEARNAFRCA,2026-08-18,sell,"NED Bakari, first sale",disclosures pipeline,-13.0,,resolved,2026-09-20
+CUSTODIAN,2026-06-29,buy,"MD Wole Oshin, 19.5M units",disclosures pipeline,7.2,,resolved,2026-09-20
+ZENITHBANK,2020-05-15,buy,"NED Ibidapo-Obe, 578,574 shares @ N15.35","Investors King, Aug 4 2020",4.9,9.1,resolved,2026-09-20
+ZENITHBANK,2021-03-19,buy,"GMD/CEO Onyeagwu, 5M shares @ avg N22.41","Brandspur NG, Mar 23 2021",-0.9,4.4,resolved,2026-09-20
+MTNN,2025-12-04,buy,"NED Andrew Alli, 93,220 shares @ N470.60","Arbiterz, Dec 6 2025",8.6,67.9,resolved,2026-09-20
+UBA,2023-11-01,buy,"CEO Alawuba + exec cluster, 22.8M+9.3M shares @ ~N21","Nairametrics, Nov 3 2023",1.7,29.5,resolved,2026-09-20
+UBA,2025-05-30,buy,"NED Ugboh, 49,700 shares @ N34.75","Guardian NG, Jun 12 2025",5.2,34.6,resolved,2026-09-20
+NAHCO,2026-08-31,sell,ED Saheed Lasisi,disclosures pipeline,,,pending,2026-09-20
+LEARNAFRCA,2026-09-03,sell,"NED Bakari, continuing pattern (txn end date)",disclosures pipeline,,,pending,2026-09-20
+CHAMS,2026-09-09,sell,"Creditville (NED-related), net heavy sell",disclosures pipeline,,,pending,2026-09-20
+CHAMS,2026-09-14,sell,"Creditville, third disposal",disclosures pipeline,,,pending,2026-09-20
+FIRSTHOLDCO,2026-08-24,buy,"Calvados (Otedola-related), final tranche of 2.87B share buy",disclosures pipeline,,,pending,2026-09-20
+MBENEFIT,2026-09-16,mixed,"5 insiders buy vs 1 shareholder sell, same week",disclosures pipeline,,,pending,2026-09-20
