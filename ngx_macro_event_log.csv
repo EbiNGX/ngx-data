@@ -1,0 +1,4 @@
+date,decision,rate_before,rate_after,note,source,fwd_20d_asi_pct,fwd_60d_asi_pct,fwd_120d_asi_pct,fwd_250d_asi_pct,logged_on
+2016-07-26,hike,12.00,14.00,Post oil-crash/recession tightening cycle begins,"Businessfront/Finance in Africa, dated 2026",-0.5,-1.2,-6.2,31.9,2026-09-20
+2025-09-23,cut,27.50,27.00,"302nd MPC meeting, 50bps cut",CBN official decisions archive,9.1,6.3,43.0,,2026-09-20
+2026-02-24,cut,27.00,26.50,"304th MPC meeting, 50bps cut",CBN official decisions archive,3.3,28.4,23.1,,2026-09-20
