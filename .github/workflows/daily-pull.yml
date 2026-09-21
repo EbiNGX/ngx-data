@@ -25,6 +25,9 @@ jobs:
       - name: Run the CBN macro data pull
         run: python cbn_update.py
 
+      - name: Run the NGX own-source data pull
+        run: python ngx_own_data_update.py
+
       - name: Commit and push any new data
         run: |
           git config user.name "github-actions[bot]"
