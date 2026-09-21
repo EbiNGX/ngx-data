@@ -2,7 +2,7 @@ name: NGX Daily Data Pull
 
 on:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: '0 17 * * *'
   workflow_dispatch:
 
 jobs:
@@ -24,6 +24,9 @@ jobs:
 
       - name: Run the CBN macro data pull
         run: python cbn_update.py
+
+      - name: Run the NGX own-source data pull
+        run: python ngx_own_data_update.py
 
       - name: Commit and push any new data
         run: |
