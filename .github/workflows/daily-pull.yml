@@ -28,6 +28,12 @@ jobs:
       - name: Run the NGX own-source data pull
         run: python ngx_own_data_update.py
 
+      - name: Run the stockanalysis fundamentals pull
+        run: python stockanalysis_update.py
+
+      - name: Run the mystocks dividend calendar pull
+        run: python mystocks_dividend_calendar.py
+
       - name: Commit and push any new data
         run: |
           git config user.name "github-actions[bot]"
