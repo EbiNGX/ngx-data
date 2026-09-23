@@ -1,0 +1,350 @@
+TICKER: BUACEMENT
+Last Price: ₦297.00
+Best Bid: ₦279.80 x 580
+Best Offer: ₦280.00 x 5,291
+Bid Depth: 400,403
+Offer Depth: 1,338,310
+Volume Today: 788,672
+Day's Range: not shown
+
+TICKER: BUAFOODS
+Last Price: ₦760.60
+Best Bid: ₦699.00 x 5
+Best Offer: ₦700.00 x 48,732
+Bid Depth: 44,161
+Offer Depth: 171,095
+Volume Today: 42,121
+Day's Range: not shown
+
+TICKER: DANGCEM
+Last Price: ₦1,068.00
+Best Bid: ₦1,065.00 x 618
+Best Offer: ₦1,067.00 x 7,339
+Bid Depth: 537,302
+Offer Depth: 1,822,162
+Volume Today: 129,514
+Day's Range: not shown
+
+TICKER: OKOMUOIL
+Last Price: ₦1,276.20
+Best Bid: ₦0.00 x 0
+Best Offer: ₦1,148.60 x 5,269
+Bid Depth: 0
+Offer Depth: 1,119,986
+Volume Today: 54,514
+Day's Range: not shown
+
+TICKER: PRESCO
+Last Price: ₦2,045.30
+Best Bid: ₦0.00 x 0
+Best Offer: ₦1,840.80 x 2,334,816
+Bid Depth: 0
+Offer Depth: 9,363,426
+Volume Today: 8,247
+Day's Range: not shown
+
+TICKER: ARADEL
+Last Price: ₦1,530.00
+Best Bid: ₦1,496.00 x 484
+Best Offer: ₦1,497.90 x 16,966
+Bid Depth: 975,029
+Offer Depth: 1,001,634
+Volume Today: 793,667
+Day's Range: not shown
+
+TICKER: UACN
+Last Price: ₦172.00
+Best Bid: ₦172.40 x 150
+Best Offer: ₦173.35 x 269
+Bid Depth: 2,289,240
+Offer Depth: 2,764,213
+Volume Today: 145,045
+Day's Range: not shown
+
+TICKER: ZENITHBANK
+Last Price: ₦133.00
+Best Bid: ₦133.20 x 120
+Best Offer: ₦133.50 x 4,608
+Bid Depth: 10,039,520
+Offer Depth: 7,923,480
+Volume Today: 15,752,237
+Day's Range: not shown
+
+TICKER: MTNN
+Last Price: ₦850.00
+Best Bid: ₦855.70 x 31129
+Best Offer: ₦858.50 x 31
+Bid Depth: 2,967,870
+Offer Depth: 2,186,399
+Volume Today: 518,271
+Day's Range: not shown
+
+TICKER: NASCON
+Last Price: ₦176.00
+Best Bid: ₦180.20 x 120993
+Best Offer: ₦181.50 x 363
+Bid Depth: 1,957,605
+Offer Depth: 834,363
+Volume Today: 60,044
+Day's Range: not shown
+
+TICKER: GTCO
+Last Price: ₦137.20
+Best Bid: ₦137.00 x 34000
+Best Offer: ₦137.20 x 78,628
+Bid Depth: 15,972,946
+Offer Depth: 10,432,966
+Volume Today: 49,358,381
+Day's Range: not shown
+
+TICKER: NEM
+Last Price: ₦28.70
+Best Bid: ₦28.75 x 250000
+Best Offer: ₦29.15 x 27,775
+Bid Depth: 2,973,885
+Offer Depth: 699,152
+Volume Today: 257,891
+Day's Range: not shown
+
+TICKER: UNILEVER
+Last Price: ₦109.95
+Best Bid: ₦100.10 x 1467
+Best Offer: ₦100.50 x 122,598
+Bid Depth: 369,095
+Offer Depth: 777,176
+Volume Today: 29,983
+Day's Range: not shown
+
+TICKER: ETERNA
+Last Price: ₦38.50
+Best Bid: ₦36.05 x 5336
+Best Offer: ₦36.80 x 310
+Bid Depth: 2,297,607
+Offer Depth: 357,180
+Volume Today: 882,085
+Day's Range: not shown
+
+TICKER: MAYBAKER
+Last Price: ₦39.00
+Best Bid: ₦39.65 x 16033
+Best Offer: ₦40.00 x 160
+Bid Depth: 1,239,593
+Offer Depth: 365,650
+Volume Today: 246,632
+Day's Range: not shown
+
+TICKER: BETAGLAS
+Last Price: ₦511.50
+Best Bid: ₦486.00 x 669
+Best Offer: ₦494.80 x 6,000
+Bid Depth: 305,748
+Offer Depth: 152,358
+Volume Today: 20,676
+Day's Range: not shown
+
+TICKER: SEPLAT
+Last Price: ₦14,907.80
+Best Bid: ₦15,610.50 x 68
+Best Offer: ₦15,980.00 x 2
+Bid Depth: 53,423
+Offer Depth: 117,599
+Volume Today: 3,908
+Day's Range: not shown
+
+TICKER: UCAP
+Last Price: ₦17.50
+Best Bid: ₦17.20 x 155807
+Best Offer: ₦17.50 x 151,540
+Bid Depth: 2,969,979
+Offer Depth: 9,240,972
+Volume Today: 8,510,902
+Day's Range: not shown
+
+TICKER: FIRSTHOLDCO
+Last Price: ₦165.00
+Best Bid: ₦161.00 x 7761
+Best Offer: ₦161.50 x 1,196
+Bid Depth: 4,484,016
+Offer Depth: 7,628,069
+Volume Today: 2,501,934
+Day's Range: not shown
+
+TICKER: UBA
+Last Price: ₦46.00
+Best Bid: ₦45.95 x 31000
+Best Offer: ₦46.00 x 263,695
+Bid Depth: 16,585,504
+Offer Depth: 11,259,901
+Volume Today: 6,294,432
+Day's Range: not shown
+
+TICKER: INTBREW
+Last Price: ₦9.65
+Best Bid: ₦9.85 x 10000
+Best Offer: ₦9.95 x 68,591
+Bid Depth: 1,763,356
+Offer Depth: 1,250,318
+Volume Today: 444,228
+Day's Range: not shown
+
+TICKER: LEARNAFRCA
+Last Price: ₦8.60
+Best Bid: ₦7.95 x 39005
+Best Offer: ₦8.30 x 15,345
+Bid Depth: 2,308,763
+Offer Depth: 847,742
+Volume Today: 129,820
+Day's Range: not shown
+
+TICKER: CHAMS
+Last Price: ₦3.49
+Best Bid: ₦3.49 x 408
+Best Offer: ₦3.50 x 310,292
+Bid Depth: 42,529,971
+Offer Depth: 7,301,751
+Volume Today: 4,928,601
+Day's Range: not shown
+
+TICKER: STANBIC
+Last Price: ₦164.00
+Best Bid: ₦161.55 x 31
+Best Offer: ₦163.00 x 69,940
+Bid Depth: 1,611,018
+Offer Depth: 1,704,634
+Volume Today: 1,720,666
+Day's Range: not shown
+
+TICKER: ACCESSCORP
+Last Price: ₦30.00
+Best Bid: ₦30.00 x 782402
+Best Offer: ₦30.05 x 190,972
+Bid Depth: 7,471,588
+Offer Depth: 14,782,896
+Volume Today: 8,719,459
+Day's Range: not shown
+
+TICKER: TRANSCORP
+Last Price: ₦37.00
+Best Bid: ₦35.50 x 1954
+Best Offer: ₦36.00 x 82,743
+Bid Depth: 2,594,834
+Offer Depth: 3,917,121
+Volume Today: 162,949
+Day's Range: not shown
+
+TICKER: ETI
+Last Price: ₦66.50
+Best Bid: ₦66.00 x 183
+Best Offer: ₦66.15 x 60,426
+Bid Depth: 4,502,195
+Offer Depth: 1,466,759
+Volume Today: 417,400
+Day's Range: not shown
+
+TICKER: PZ
+Last Price: ₦74.70
+Best Bid: ₦74.60 x 11190
+Best Offer: ₦74.70 x 46,258
+Bid Depth: 3,504,576
+Offer Depth: 734,689
+Volume Today: 1,987,564
+Day's Range: not shown
+
+TICKER: UPDCREIT
+Last Price: ₦18.55
+Best Bid: ₦18.55 x 110190
+Best Offer: ₦19.00 x 2,763
+Bid Depth: 1,359,331
+Offer Depth: 1,745,644
+Volume Today: 1,811,646
+Day's Range: not shown
+
+TICKER: AIICO
+Last Price: ₦3.73
+Best Bid: ₦3.80 x 900
+Best Offer: ₦3.82 x 17,084
+Bid Depth: 8,514,294
+Offer Depth: 3,387,380
+Volume Today: 8,218,082
+Day's Range: not shown
+
+TICKER: NGXGROUP
+Last Price: ₦185.00
+Best Bid: ₦184.80 x 20027
+Best Offer: ₦185.00 x 122,823
+Bid Depth: 2,631,769
+Offer Depth: 5,892,797
+Volume Today: 1,291,302
+Day's Range: not shown
+
+TICKER: CUTIX
+Last Price: ₦2.30
+Best Bid: ₦2.31 x 700000
+Best Offer: ₦2.40 x 953,696
+Bid Depth: 12,657,410
+Offer Depth: 2,689,227
+Volume Today: 2,209,123
+Day's Range: not shown
+
+TICKER: FIDSON
+Last Price: ₦80.00
+Best Bid: ₦80.00 x 52727
+Best Offer: ₦81.50 x 63,725
+Bid Depth: 673,897
+Offer Depth: 1,728,463
+Volume Today: 323,361
+Day's Range: not shown
+
+TICKER: CUSTODIAN
+Last Price: ₦70.00
+Best Bid: ₦70.10 x 961
+Best Offer: ₦71.00 x 86,421
+Bid Depth: 773,969
+Offer Depth: 1,703,404
+Volume Today: 204,054
+Day's Range: not shown
+
+TICKER: DANGSUGAR
+Last Price: ₦69.70
+Best Bid: ₦70.00 x 8672
+Best Offer: ₦71.00 x 105,333
+Bid Depth: 4,361,130
+Offer Depth: 3,472,545
+Volume Today: 8,684,650
+Day's Range: not shown
+
+TICKER: TIP
+Last Price: ₦25.55
+Best Bid: ₦25.65 x 107390
+Best Offer: ₦26.00 x 57,077
+Bid Depth: 5,866,383
+Offer Depth: 2,254,659
+Volume Today: 1,864,062
+Day's Range: not shown
+
+TICKER: MBENEFIT
+Last Price: ₦3.44
+Best Bid: ₦3.40 x 53137
+Best Offer: ₦3.44 x 9,722
+Bid Depth: 7,895,292
+Offer Depth: 10,326,664
+Volume Today: 2,554,709
+Day's Range: not shown
+
+TICKER: CWG
+Last Price: ₦18.00
+Best Bid: ₦18.00 x 3645
+Best Offer: ₦18.15 x 3,815
+Bid Depth: 944,225
+Offer Depth: 506,371
+Volume Today: 440,942
+Day's Range: not shown
+
+TICKER: CONHALLPLC
+Last Price: ₦7.15
+Best Bid: ₦7.06 x 56915
+Best Offer: ₦7.15 x 48,028
+Bid Depth: 3,475,239
+Offer Depth: 872,728
+Volume Today: 242,461
+Day's Range: not shown
