@@ -17,16 +17,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run the daily pull script
-        env:
-          KOBO_KEY: ${{ secrets.KOBO_KEY }}
-        run: python daily_update.py
-
       - name: Run the CBN macro data pull
         run: python cbn_update.py
 
       - name: Run the NGX own-source data pull
         run: python ngx_own_data_update.py
+
+      - name: Bridge free NGX-native price data into per-ticker files
+        run: python bridge_price_data.py
+
+      - name: Check for frozen-price dislocations
+        run: python dislocation_check.py
 
       - name: Run the stockanalysis fundamentals pull
         run: python stockanalysis_update.py
@@ -41,6 +42,7 @@ jobs:
         run: python resolve_portfolio_calls.py
 
       - name: Commit and push any new data
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
