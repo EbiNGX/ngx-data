@@ -34,6 +34,12 @@ jobs:
       - name: Run the mystocks dividend calendar pull
         run: python mystocks_dividend_calendar.py
 
+      - name: Run the forward screening scan
+        run: python forward_screen.py
+
+      - name: Check portfolio call outcomes
+        run: python resolve_portfolio_calls.py
+
       - name: Commit and push any new data
         run: |
           git config user.name "github-actions[bot]"
