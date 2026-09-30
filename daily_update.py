@@ -6,14 +6,14 @@ KEY = os.environ["KOBO_KEY"]
 headers = {"X-API-Key": KEY, "User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 STATE_FILE = "pull_schedule_state.json"
 
-# Full 44-ticker universe - matches the disclosures pipeline exactly.
+# Full 44-ticker universe plus NIDF (added 2026-09-28: listed infrastructure debt fund).
 # FTGINSURE deliberately excluded: every data source for it contradicted itself.
 TICKERS = ["MTNN","ZENITHBANK","ARADEL","UACN","GTCO","NEM","UNILEVER","ETERNA",
     "MAYBAKER","CWG","MBENEFIT","BUACEMENT","BETAGLAS","SEPLAT","CONHALLPLC",
     "LEARNAFRCA","STANBIC","FIDSON","TRANSCORP","ACCESSCORP","ETI","PZ","UCAP",
     "UBA","UPDCREIT","FIRSTHOLDCO","AIICO","TIP","NGXGROUP","CUTIX","WAPIC",
     "OANDO","ROYALEX","INTBREW","CHAMS","NAHCO","TANTALIZER","NPFMCRFBK",
-    "CUSTODIAN","DANGSUGAR","PRESCO","OKOMUOIL","BUAFOODS","DANGCEM"]
+    "CUSTODIAN","DANGSUGAR","PRESCO","OKOMUOIL","BUAFOODS","DANGCEM","NIDF"]
 
 summary_lines = []
 fail_count = 0
