@@ -68,8 +68,10 @@ for sym, call, rationale in CURRENT_CALLS:
         "symbol": sym, "call": call, "rationale": rationale,
         "logged_date": today, "price_at_logging": price_today,
         "price_date": price_date,
-        "fwd_60d_price": "", "fwd_60d_return_pct": "", "fwd_60d_date": "",
-        "call_correct": "",  # filled in once resolved: for Buy, correct if return > 0; for Sell/Avoid, correct if return < 0
+        "fwd_30d_price": "", "fwd_30d_return_pct": "", "fwd_30d_date": "", "call_correct_30d": "",
+        "fwd_60d_price": "", "fwd_60d_return_pct": "", "fwd_60d_date": "", "call_correct_60d": "",
+        "fwd_90d_price": "", "fwd_90d_return_pct": "", "fwd_90d_date": "", "call_correct_90d": "",
+        "fwd_120d_price": "", "fwd_120d_return_pct": "", "fwd_120d_date": "", "call_correct_120d": "",
     })
 
 file_exists = os.path.exists(OUTFILE)

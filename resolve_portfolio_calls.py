@@ -2,7 +2,7 @@ import json, csv, os
 import pandas as pd
 
 LOG_FILE = "portfolio_calls_log.csv"
-HORIZON_DAYS = 60
+HORIZONS = [30, 60, 90, 120]
 
 def resolve():
     if not os.path.exists(LOG_FILE):
@@ -10,10 +10,10 @@ def resolve():
         return
 
     rows = list(csv.DictReader(open(LOG_FILE)))
+    fieldnames = list(rows[0].keys())
     updated = 0
+
     for r in rows:
-        if r["fwd_60d_return_pct"]:
-            continue  # already resolved, never overwrite
         sym = r["symbol"]
         fp = f"{sym}_price.json"
         if not os.path.exists(fp):
@@ -28,42 +28,55 @@ def resolve():
         if len(idx) == 0:
             continue
         i = idx[-1]
-        if i + HORIZON_DAYS >= len(df):
-            continue  # not enough trading days have passed yet
 
-        p0 = float(r["price_at_logging"])
-        p1 = df["close_price"].iloc[i + HORIZON_DAYS]
-        fwd_date = df["trade_date"].iloc[i + HORIZON_DAYS].strftime("%Y-%m-%d")
-        ret_pct = round((p1 / p0 - 1) * 100, 2)
+        for h in HORIZONS:
+            ret_col = f"fwd_{h}d_return_pct"
+            price_col = f"fwd_{h}d_price"
+            date_col = f"fwd_{h}d_date"
+            correct_col = f"call_correct_{h}d"
 
-        r["fwd_60d_price"] = p1
-        r["fwd_60d_return_pct"] = ret_pct
-        r["fwd_60d_date"] = fwd_date
+            if r.get(ret_col):
+                continue  # already resolved at this horizon, never overwrite
+            if i + h >= len(df):
+                continue  # not enough trading days have passed yet for this horizon
 
-        call = r["call"]
-        if "Buy" in call:
-            r["call_correct"] = "yes" if ret_pct > 0 else "no"
-        elif call in ("Sell/Trim", "Sell", "Trim", "Avoid"):
-            r["call_correct"] = "yes" if ret_pct < 0 else "no"
-        else:  # Hold - no directional prediction, mark as n/a
-            r["call_correct"] = "n/a (Hold)"
+            p0 = float(r["price_at_logging"])
+            p1 = df["close_price"].iloc[i + h]
+            ret_pct = round((p1 / p0 - 1) * 100, 2)
 
-        updated += 1
+            r[price_col] = p1
+            r[ret_col] = ret_pct
+            r[date_col] = df["trade_date"].iloc[i + h].strftime("%Y-%m-%d")
+
+            call = r["call"]
+            if "Buy" in call:
+                r[correct_col] = "yes" if ret_pct > 0 else "no"
+            elif call in ("Sell/Trim", "Sell", "Trim", "Avoid"):
+                r[correct_col] = "yes" if ret_pct < 0 else "no"
+            else:
+                r[correct_col] = "n/a (Hold)"
+
+            updated += 1
 
     if updated:
         with open(LOG_FILE, "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            w = csv.DictWriter(f, fieldnames=fieldnames)
             w.writeheader()
             w.writerows(rows)
 
-    resolved = [r for r in rows if r["fwd_60d_return_pct"]]
-    directional = [r for r in resolved if r["call_correct"] != "n/a (Hold)"]
-    correct = [r for r in directional if r["call_correct"] == "yes"]
-    print(f"Newly resolved this run: {updated}")
-    print(f"Total resolved so far: {len(resolved)} of {len(rows)}")
-    if directional:
-        print(f"Directional calls (Buy/Sell/Trim/Avoid) correct: {len(correct)} of {len(directional)} "
-              f"({len(correct)/len(directional)*100:.0f}%)")
+    print(f"Newly resolved values this run: {updated}\n")
+    for h in HORIZONS:
+        ret_col = f"fwd_{h}d_return_pct"
+        correct_col = f"call_correct_{h}d"
+        resolved = [r for r in rows if r.get(ret_col)]
+        directional = [r for r in resolved if r.get(correct_col) != "n/a (Hold)"]
+        correct = [r for r in directional if r.get(correct_col) == "yes"]
+        if resolved:
+            pct = f"{len(correct)/len(directional)*100:.0f}%" if directional else "n/a"
+            print(f"  {h}-day: {len(resolved)} of {len(rows)} resolved | "
+                  f"directional calls correct: {len(correct)} of {len(directional)} ({pct})")
+        else:
+            print(f"  {h}-day: not enough trading days have passed yet for any row")
 
 if __name__ == "__main__":
     resolve()
