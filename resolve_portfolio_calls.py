@@ -1,8 +1,19 @@
 import json, csv, os
-import pandas as pd
 
 LOG_FILE = "portfolio_calls_log.csv"
 HORIZONS = [30, 60, 90, 120]
+
+def load_price_series(sym):
+    fp = f"{sym}_price.json"
+    if not os.path.exists(fp):
+        return None
+    d = json.load(open(fp))
+    rows = sorted(d["prices"], key=lambda p: p["trade_date"])
+    seen = {}
+    for r in rows:
+        seen[r["trade_date"]] = r
+    dates = sorted(seen.keys())
+    return dates, seen
 
 def resolve():
     if not os.path.exists(LOG_FILE):
@@ -15,19 +26,16 @@ def resolve():
 
     for r in rows:
         sym = r["symbol"]
-        fp = f"{sym}_price.json"
-        if not os.path.exists(fp):
+        series = load_price_series(sym)
+        if series is None:
             continue
-        d = json.load(open(fp))
-        df = pd.DataFrame(d["prices"])
-        df["trade_date"] = pd.to_datetime(df["trade_date"])
-        df = df.sort_values("trade_date").drop_duplicates("trade_date").reset_index(drop=True)
+        dates, by_date = series
 
-        logged_date = pd.Timestamp(r["price_date"] or r["logged_date"])
-        idx = df.index[df["trade_date"] <= logged_date]
-        if len(idx) == 0:
+        target = r["price_date"] or r["logged_date"]
+        candidates = [d for d in dates if d <= target]
+        if not candidates:
             continue
-        i = idx[-1]
+        i = dates.index(candidates[-1])
 
         for h in HORIZONS:
             ret_col = f"fwd_{h}d_return_pct"
@@ -36,17 +44,18 @@ def resolve():
             correct_col = f"call_correct_{h}d"
 
             if r.get(ret_col):
-                continue  # already resolved at this horizon, never overwrite
-            if i + h >= len(df):
-                continue  # not enough trading days have passed yet for this horizon
+                continue
+            if i + h >= len(dates):
+                continue
 
             p0 = float(r["price_at_logging"])
-            p1 = df["close_price"].iloc[i + h]
+            fwd_date = dates[i + h]
+            p1 = by_date[fwd_date]["close_price"]
             ret_pct = round((p1 / p0 - 1) * 100, 2)
 
             r[price_col] = p1
             r[ret_col] = ret_pct
-            r[date_col] = df["trade_date"].iloc[i + h].strftime("%Y-%m-%d")
+            r[date_col] = fwd_date
 
             call = r["call"]
             if "Buy" in call:
