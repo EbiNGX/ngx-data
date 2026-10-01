@@ -3,11 +3,27 @@ from datetime import datetime, timedelta, timezone
 
 DISCLOSURES_FILE = "ngx_disclosures_full_history.json"
 OUTFILE = "forward_screen_candidates.csv"
-LOOKBACK_DAYS = 21  # a real financial-statement filing needs to be recent to matter
+LOOKBACK_DAYS = 21
 
-# --- Hard disqualifiers, regardless of any other signal ---
 AUDITOR_KEYWORDS = ['auditor resign', 'resignation of auditor', 'external auditor']
 INSIDER_SELL_KEYWORDS = ['sale', 'sold', 'disposal']
+
+# --- Earnings-quality soft flag (NEW) ---
+# Confirmed real, repeated pattern this project found by hand: Conhallplc's earnings
+# surge was investment-gain-driven, not core business. PZ's FY26 profit was inflated
+# by a one-time JV divestment gain. Stanbic's H1 2026 profit beat came entirely from
+# trading revenue while core net interest income fell 14%. All three were caught only
+# because a human read the actual filing - no keyword rule would have caught Stanbic's
+# case specifically, since "trading revenue" alone isn't inherently suspicious.
+# This is NOT a hard disqualifier like auditor resignation - it is a MANDATORY human
+# check: any candidate hitting one of these keywords CANNOT be marked verdict=real_growth
+# until earnings_quality_check is explicitly filled in. This forces the same discipline
+# that caught Stanbic, rather than letting a clean-looking PBT% pass silently.
+EARNINGS_QUALITY_KEYWORDS = [
+    'trading revenue', 'trading income', 'gain on disposal', 'gain on sale',
+    'fair value gain', 'one-off', 'one off', 'exceptional item',
+    'impairment reversal', 'profit on disposal', 'divestment gain',
+]
 
 def is_financial_statement(r):
     return (r.get('Type_of_Submission') or '').strip() == 'Financial Statements'
@@ -31,17 +47,20 @@ def dealing_direction(r):
         return "buy"
     return "unknown"
 
+def earnings_quality_flag(r):
+    """Returns True if the filing's own title/description mentions anything that
+    HISTORICALLY correlated with a non-core earnings driver in this project. This
+    is a trigger for mandatory human review, NOT proof of a problem - Stanbic's
+    real case shows the keyword can be absent even when the issue is real, so a
+    'False' here does not mean the filing is clean, only that it needs the same
+    manual read either way per the mandatory column below."""
+    desc = (r.get('URL', {}).get('Description') or '').lower()
+    return any(kw in desc for kw in EARNINGS_QUALITY_KEYWORDS)
+
 d = json.load(open(DISCLOSURES_FILE))
 cutoff = (datetime.now(timezone.utc) - timedelta(days=LOOKBACK_DAYS)).strftime("%Y-%m-%dT%H:%M:%SZ")
-
 recent = [r for r in d if r.get('Modified', '') >= cutoff]
 
-# Real Financial Statement filings, company-wide, in the lookback window -
-# these are the actual candidates. We do NOT try to auto-extract PBT/revenue
-# numbers here - that was tested and found unreliable for anything beyond a
-# handful of rigid templates (the AFRINSURE table-scrambling problem). This
-# script's job is to surface WHICH companies have something worth a manual
-# read, not to fabricate a number.
 fs_by_symbol = {}
 for r in recent:
     if is_financial_statement(r):
@@ -49,13 +68,11 @@ for r in recent:
         if sym:
             fs_by_symbol.setdefault(sym, []).append(r)
 
-# Hard disqualifiers, checked over a longer window (90 days) since these
-# matter regardless of how recent the earnings filing is
 long_cutoff = (datetime.now(timezone.utc) - timedelta(days=90)).strftime("%Y-%m-%dT%H:%M:%SZ")
 long_recent = [r for r in d if r.get('Modified', '') >= long_cutoff]
 
 disqualified = set()
-insider_activity = {}  # symbol -> {"buys": n, "sells": n}
+insider_activity = {}
 
 for r in long_recent:
     sym = (r.get('CompanySymbol') or '').strip()
@@ -71,17 +88,15 @@ for r in long_recent:
         elif direction == "sell":
             rec["sells"] += 1
 
-# Build the candidate list
 candidates = []
 for sym, filings in fs_by_symbol.items():
     if sym in disqualified:
-        continue  # hard exclusion, no exceptions
+        continue
     ins = insider_activity.get(sym, {"buys": 0, "sells": 0})
-    # An escalating-sell pattern (more sells than buys, and at least 2 sells)
-    # is itself a disqualifier per the Chams precedent
     if ins["sells"] >= 2 and ins["sells"] > ins["buys"]:
         continue
     latest_filing = max(filings, key=lambda x: x.get('Modified', ''))
+    eq_flag = earnings_quality_flag(latest_filing)
     candidates.append({
         "symbol": sym,
         "filing_date": latest_filing.get('Modified', '')[:10],
@@ -89,11 +104,13 @@ for sym, filings in fs_by_symbol.items():
         "filing_url": latest_filing.get('URL', {}).get('Url', ''),
         "recent_insider_buys": ins["buys"],
         "recent_insider_sells": ins["sells"],
+        "earnings_quality_keyword_hit": eq_flag,
         "screened_on": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
-        "status": "pending_manual_read",  # PBT/revenue growth must be read manually
-        "pbt_growth_pct": "",  # filled in by hand after reading the filing
-        "verdict": "",  # filled in by hand: real_growth / no_growth / disqualified_on_read
-        "fwd_60d_return_pct": "",  # filled in by resolve script once 60 trading days pass
+        "status": "pending_manual_read",
+        "pbt_growth_pct": "",
+        "earnings_quality_check": "",  # MANDATORY - fill in: core_business / non_core_driven / mixed
+        "verdict": "",  # may ONLY be real_growth if earnings_quality_check is filled AND = core_business
+        "fwd_60d_return_pct": "",
     })
 
 os.makedirs(os.path.dirname(OUTFILE) or ".", exist_ok=True)
@@ -118,6 +135,9 @@ print(f"Financial Statement filings in last {LOOKBACK_DAYS} days: {len(fs_by_sym
 print(f"Disqualified (auditor resignation, 90-day window): {sorted(disqualified)}")
 print(f"New candidates added this run: {len(new_rows)}")
 for c in new_rows:
-    print(f"  {c['symbol']}: filed {c['filing_date']}, insider buys={c['recent_insider_buys']} sells={c['recent_insider_sells']}")
-print(f"\nSaved to {OUTFILE} - each new row needs the actual filing read by hand")
-print("(same discipline as everything else this project has tested: read real content, don't guess)")
+    qflag = " [EARNINGS QUALITY KEYWORD HIT - mandatory check]" if c["earnings_quality_keyword_hit"] else ""
+    print(f"  {c['symbol']}: filed {c['filing_date']}, insider buys={c['recent_insider_buys']} sells={c['recent_insider_sells']}{qflag}")
+print(f"\nSaved to {OUTFILE}")
+print("REMINDER: 'earnings_quality_check' must be filled in for every row before giving a")
+print("verdict of real_growth - a blank keyword hit does NOT mean the filing is clean")
+print("(Stanbic's real case had no matching keyword at all). Read every filing regardless.")
