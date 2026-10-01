@@ -5,6 +5,10 @@ on:
     - cron: '0 17 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: ngx-daily-pull
+  cancel-in-progress: false
+
 jobs:
   pull-data:
     runs-on: ubuntu-latest
