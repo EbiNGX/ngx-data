@@ -20,9 +20,10 @@ def filled(v):
 def score(call, ret):
     if ret == 0:
         return "n/a (flat)"  # a frozen/unchanged price is no evidence either way
-    if "Buy" in call:
+    primary = call.split(",")[0].strip()  # "Hold, lean Buy" is a Hold, never scored as a Buy
+    if primary.startswith("Buy"):
         return "yes" if ret > 0 else "no"
-    if call in SELL_SIDE:
+    if primary in SELL_SIDE:
         return "yes" if ret < 0 else "no"
     return "n/a (Hold)"
 
@@ -80,7 +81,7 @@ def resolve(horizons=HORIZONS, log_file=LOG_FILE):
     for r in rows:
         sym, logged, call = r["symbol"], r["logged_date"], r["call"]
         bi = None
-        if calendar:
+        if calendar and logged <= calendar[-1]:  # if the logging day is not in the feed yet, wait
             cand = [k for k, d in enumerate(calendar) if d <= logged]
             bi = cand[-1] if cand else None
         baseline_day = calendar[bi] if bi is not None else None
@@ -108,7 +109,7 @@ def resolve(horizons=HORIZONS, log_file=LOG_FILE):
                     r[f"call_correct_{h}d"] = score(call, ret)
                     updated += 1
         else:
-            excluded.append(f"{sym} ({logged})")
+            excluded.append((sym, logged))
 
         # ---- scoreboard 2: VWAP, the price the stock actually traded at ----
         if bi is not None:
@@ -156,7 +157,11 @@ def resolve(horizons=HORIZONS, log_file=LOG_FILE):
                              f"directional correct {len(ok)}/{len(dr)} ({pct})")
         print("\n".join(lines) if lines else f"  {h}-day: pending (not enough trading days yet)")
     if excluded:
-        print("Excluded from the official-close scoreboard (no or stale baseline): " + ", ".join(sorted(set(excluded))))
+        grp = {}
+        for sym_, c_ in excluded:
+            grp.setdefault(c_, []).append(sym_)
+        parts = [f"cohort {c}: " + (", ".join(sorted(v)) if len(v) <= 4 else f"{len(v)} rows (VWAP-only)") for c, v in sorted(grp.items())]
+        print("Official-close scoreboard excludes (no or stale baseline) - " + "; ".join(parts))
 
 if __name__ == "__main__":
     resolve()
