@@ -30,6 +30,9 @@ jobs:
       - name: Bridge free NGX-native price data into per-ticker files
         run: python bridge_price_data.py
 
+      - name: Update ASI and sector index history (Kobo-free, derived from NGX prices)
+        run: python index_proxy_update.py
+
       - name: Check for frozen-price dislocations
         run: python dislocation_check.py
 
