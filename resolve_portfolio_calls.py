@@ -165,3 +165,10 @@ def resolve(horizons=HORIZONS, log_file=LOG_FILE):
 
 if __name__ == "__main__":
     resolve()
+    # Tradable-price view (best offer in, best bid out) from the Meristem book log.
+    # It must never break the main resolver, so any problem here is reported and skipped.
+    try:
+        import tradable_scoreboard
+        tradable_scoreboard.main()
+    except Exception as e:
+        print(f"tradable scoreboard skipped: {e}")

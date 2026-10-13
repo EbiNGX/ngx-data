@@ -1,0 +1,75 @@
+
+============================================================
+=== SAMPLE 1 ===
+URL: https://doclib.ngxgroup.com/Financial_NewsDocs/47925_AFRICAN_ALLIANCE_INSURANCE_PLC-_QUARTER_5_-_FINANCIAL_STATEMENT_FOR_2024_FINANCIAL_STATEMENTS_SEPTEMBER_2026.pdf
+
+--- Page 1: 0 table(s) found ---
+
+--- Page 2: 0 table(s) found ---
+
+--- Page 3: 0 table(s) found ---
+
+============================================================
+=== SAMPLE 2 ===
+URL: https://doclib.ngxgroup.com/Financial_NewsDocs/47922_AFRICAN_ALLIANCE_INSURANCE_PLC-_QUARTER_3_-_FINANCIAL_STATEMENT_FOR_2024_FINANCIAL_STATEMENTS_SEPTEMBER_2026.pdf
+
+--- Page 1: 1 table(s) found ---
+Table 1, 3 rows:
+   ['MANAGEMENT ACCOUNT']
+   ['FOR THE PERIOD ENDED 30 SEPTEMBER 2024']
+   ['']
+
+--- Page 2: 1 table(s) found ---
+Table 1, 82 rows:
+   ['ACTUAL', 'ACTUAL', '', 'Variance', '', '%']
+   ['30-Sep-24', '03-Sep-23', '', '', '', '']
+   ["N'000", "N'000", '', "N'000", None, '']
+   ['', '', '', '', '', '']
+   ['4,057,897', '4,915,275', '', '(857,378)', '', '-17%']
+   ['', '', '', '', '', '']
+   ['3,127,322', '4,547,393', '', '(1,420,071)', '', '-31%']
+   ['', '', '', '', '', '']
+
+--- Page 3: 1 table(s) found ---
+Table 1, 10 rows:
+   ['ACTUAL\n30-Sep-24\nN’000\n50,139\n86,088\n2,038,246\n29,846,418\n62,782\n-\n104,553\n762,622\n12,734,000\n105,000\n-\n-\n146,476\n23,677\n578,412\n84,878\n200,000', 'ACTUAL\n31-Dec-23\nN’000\n787,831\n270,453\n3,058,136\n29,846,418\n62,782\n-\n104,553\n604,213\n12,734,000\n105,000\n-\n-\n146,476\n32,785\n684,776\n123,950\n200,000']
+   ['', '']
+   ['46,823,290', '48,761,374']
+   ['37,735,325\n2,435,773\n1,684,566\n1,063,199\n45,106\n-\n563,752\n92,107', '40,849,131\n2,919,135\n1,649,987\n611,550\n48,325\n0\n561,865\n92,107']
+   ['', '']
+   ['43,619,828', '46,732,099']
+   ['10,292,500\n14,365,133\n2,101,485\n(38,954,040)\n15,398,382', '10,292,500\n14,365,133\n1,983,878\n(40,010,618)\n15,398,382']
+   ['', '']
+
+============================================================
+=== SAMPLE 3 ===
+URL: https://doclib.ngxgroup.com/Financial_NewsDocs/47920_AFRICAN_ALLIANCE_INSURANCE_PLC-_QUARTER_2_-_FINANCIAL_STATEMENT_FOR_2024_FINANCIAL_STATEMENTS_SEPTEMBER_2026.pdf
+
+--- Page 1: 0 table(s) found ---
+
+--- Page 2: 2 table(s) found ---
+Table 1, 15 rows:
+   ['Description', '30-Jun-24', None, '30-Jun-23', None]
+   [None, 'Unit', 'Percentage', 'Unit', 'Percentage']
+   ['Issued Share Capital', '20,585,000,000', '100%', '20,585,000,000', '100%']
+   ['Substantial Shareholdings (5% and\nabove)', '', '', '', '']
+   ['Conau Trade and Investment Limited', '11,816,192,187', '57.40%', '11,816,192,187', '57.40%']
+   ['Universal Insurance Plc', '1,200,000,000', '5.83%', '1,200,000,000', '5.83%']
+   ['Total Substantial Shareholdings', '13,016,192,187', '63.23%', '13,016,192,187', '63.23%']
+   ["Directors' Shareholdings (direct\nand indirect), excluding directors\nwith substantial interests", '', '', '', '']
+Table 2, 2 rows:
+   ["(A) African Alliance Insurance Plc with a free float percentage of 36.65% as at 30 June 2024, is compliant with\nThe Exchange's free float requirements for companies listed on the Main Board."]
+   ["(B) African Alliance Insurance Plc with a free float value of N1,509,031,028.00 as at 30 June 2024, is compliant\nwith The Exchange's free float requirements for companies listed on the Main Board."]
+
+--- Page 3: 1 table(s) found ---
+Table 1, 82 rows:
+   ['ACTUAL', 'ACTUAL', '', 'Variance', '', '%']
+   ['30-Jun-24', '30-Jun-23', '', '', '', '']
+   ["N'000", "N'000", '', "N'000", None, '']
+   ['', '', '', '', '', '']
+   ['3,275,328', '3,634,769', '', '(359,441)', '', '-10%']
+   ['', '', '', '', '', '']
+   ['2,344,752', '3,198,986', '', '(854,234)', '', '-27%']
+   ['', '', '', '', '', '']
+
+Done
